@@ -1,4 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-body { font-family: 'Inter', sans-serif; }
-.navlink { padding: 0.4rem 0.8rem; border-radius: 0.75rem; }
-.navlink:hover { background-color: rgba(0,0,0,0.05); }
+body {
+  font-family: 'Inter', sans-serif;
+}
+.navlink {
+  border-radius: 0.75rem;
+  padding: 0.4rem 0.8rem;
+}
+.navlink:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.navlink.active {
+  background-color: #0a0a0a;
+  color: #fff;
+}
