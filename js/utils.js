@@ -1,9 +1,10 @@
-// Helper functions for MujConnects
+// --------- Helpers ---------
 const $ = (sel) => document.querySelector(sel);
 
 const LS = {
   theme: 'mujc_theme',
   profile: 'mujc_profile',
+  session: 'mujc_session',       // <— NEW
   messages: (batch) => `mujc_msgs_${batch}`,
 };
 
@@ -17,12 +18,9 @@ const BATCHES = [
 
 function getProfile() {
   const raw = localStorage.getItem(LS.profile);
-  return raw ? JSON.parse(raw) : { displayName: "Nazish", email: "", batchId: "" };
+  return raw ? JSON.parse(raw) : { displayName: "Student", email: "", batchId: "" };
 }
-
-function setProfile(p) {
-  localStorage.setItem(LS.profile, JSON.stringify(p));
-}
+function setProfile(p) { localStorage.setItem(LS.profile, JSON.stringify(p)); }
 
 function applyTheme(initial) {
   const t = initial || localStorage.getItem(LS.theme) || 'light';
@@ -40,3 +38,8 @@ function timeAgo(ts) {
   const d = Math.floor(h / 24);
   return `${d}d ago`;
 }
+
+// ---------- Auth (frontend mock) ----------
+function isLoggedIn() { return !!localStorage.getItem(LS.session); }
+function loginSession(email) { localStorage.setItem(LS.session, email || 'user@muj.manipal.edu'); }
+function logoutSession() { localStorage.removeItem(LS.session); }
