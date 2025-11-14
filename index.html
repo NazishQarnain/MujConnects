@@ -6,6 +6,11 @@
   <title>MujConnects</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="css/style.css" />
+  
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 </head>
 <body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
   <header class="sticky top-0 border-b bg-white/70 backdrop-blur dark:bg-zinc-900/70 dark:border-zinc-800">
@@ -26,7 +31,14 @@
     © <span id="year"></span> MujConnects · Frontend BY NAZISH QARNAIN
   </footer>
 
-  <script src="js/utils.js"></script>
+    <script src="js/firebase-config.js"></script>
+  <script>
+    // Initialize Firebase when page loads
+    window.addEventListener('DOMContentLoaded', () => {
+      initializeFirebase();
+    });
+  </script>
+<script src="js/utils.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/home.js"></script>
   <script src="js/chat.js"></script>
