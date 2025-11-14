@@ -48,5 +48,99 @@ mujconnects/
 │ ├── chat.js
 │ └── utils.js
 ├── images/
+
+---
+
+## 🔥 Firebase Backend Setup
+
+MujConnects now includes **Firebase Authentication** and **Firebase Realtime Database** for real-time chat functionality.
+
+### Prerequisites
+1. A Google account
+2. Basic knowledge of Firebase console
+
+### Setup Instructions
+
+#### Step 1: Create a Firebase Project
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Click on "Add project" or "Create a project"
+3. Enter project name (e.g., "MujConnects")
+4. Follow the setup wizard
+
+#### Step 2: Enable Authentication
+1. In Firebase Console, click on "Authentication" from the left sidebar
+2. Click on "Get Started"
+3. Go to "Sign-in method" tab
+4. Enable **Email/Password** authentication
+
+#### Step 3: Create Realtime Database
+1. In Firebase Console, click on "Realtime Database" from the left sidebar
+2. Click on "Create Database"
+3. Choose a location (preferably closest to your users)
+4. Start in **Test mode** (for development)
+   - **Important**: For production, set up proper security rules
+
+#### Step 4: Get Your Firebase Config
+1. Go to Project Settings (gear icon → Project settings)
+2. Scroll down to "Your apps" section
+3. Click on the Web icon (</>) to add a web app
+4. Register your app with a nickname
+5. Copy the Firebase configuration object
+
+#### Step 5: Update Your Project
+1. Open `js/firebase-config.js` in your project
+2. Replace the placeholder values with your actual Firebase config:
+
+```javascript
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+```
+
+3. Save the file
+
+### Security Rules (Production)
+
+For production deployment, update your Firebase Realtime Database rules:
+
+```json
+{
+  "rules": {
+    "chats": {
+      "$batchId": {
+        "messages": {
+          ".read": "auth != null",
+          ".write": "auth != null",
+          "$messageId": {
+            ".validate": "newData.hasChildren(['text', 'displayName', 'email', 'uid', 'timestamp'])"
+          }
+        }
+      }
+    },
+    "users": {
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    }
+  }
+}
+```
+
+### Features with Firebase
+
+✅ **Real-time Authentication** - Secure user login and registration  
+✅ **Real-time Chat** - Messages sync instantly across all users  
+✅ **Batch-wise Rooms** - Students chat within their batch groups  
+✅ **User Profiles** - Display names and email stored securely  
+✅ **Message Persistence** - Chat history preserved in Firebase
+
+---
 │ └── logo.png
 └── README.md
