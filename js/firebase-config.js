@@ -2,7 +2,7 @@
 // Replace these values with your own Firebase project credentials
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCRYMfJvp4SYv7uYHDL4twNVkFZCYy1_Hw",
+    apiKey: "AIzaSyCRYMfJvp4SYv7uYHDL4twNVkFZCYyl_hc",
   authDomain: "studio-3196397526-cc488.firebaseapp.com",
   databaseURL: "https://studio-3196397526-cc488-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "studio-3196397526-cc488",
